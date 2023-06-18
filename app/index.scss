@@ -1,0 +1,18 @@
+@import '/app/assets/styles/main.scss';
+
+.index-page {
+  width: 100vw;
+  height: 200vh;
+
+  background: $main-color;
+
+  .main-wrapper {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 100vw;
+    height: 100vh;
+  }
+}

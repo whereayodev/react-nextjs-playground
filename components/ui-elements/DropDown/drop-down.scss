@@ -1,0 +1,136 @@
+@import '/app/assets/styles/main.scss';
+
+.dropdown-root {
+  @include animate(0.3s, all);
+  @include user-select-none;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 10px;
+
+  position: relative;
+  cursor: pointer;
+
+  padding: 0px 10px 0px 15px;
+  border-radius: 10px;
+  height: 40px;
+
+  min-width: fit-content;
+
+  z-index: 2;
+
+  background: var(--border-color);
+  border: 1px solid var(--border-color);
+
+  > span {
+    @include text-style-main;
+
+    color: var(--fill-color);
+  }
+
+  > svg {
+    path {
+      stroke-width: 1.5;
+      stroke: var(--fill-color);
+    }
+  }
+
+  > .list-group {
+    @include bg-blur;
+    @include hide-scrollbar;
+
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    left: 0px;
+    right: 0px;
+    border-radius: 10px;
+
+    background: var(--border-color);
+    border: 1px solid var(--border-color);
+
+    z-index: 1;
+
+    max-height: 200px;
+
+    > * {
+      padding: 10px 10px 10px 15px;
+      height: fit-content;
+
+      text-align: left;
+
+      border-top: 1px solid var(--border-color);
+      color: var(--fill-color);
+
+      @include text-style-main;
+
+      &:hover {
+        background: var(--border-color);
+      }
+    }
+  }
+
+  &.opened {
+    svg {
+      rotate: 180deg;
+    }
+  }
+
+  // Appearance
+
+  &.dark-theme {
+    --fill-color: #{$color-dark-theme-fill};
+    --border-color: #{$color-dark-theme-border};
+  }
+
+  &.light-theme {
+    --fill-color: #{$color-light-theme-fill};
+    --border-color: #{$color-light-theme-border};
+  }
+
+  &.top {
+    > .list-group {
+      bottom: 45px;
+
+      > * {
+        &:first-of-type {
+          border-top: transparent;
+        }
+      }
+    }
+
+    svg {
+      transform: scaleY(-1);
+    }
+  }
+
+  &.bottom {
+    > .list-group {
+      top: 45px;
+
+      > * {
+        &:first-of-type {
+          border-top: transparent;
+        }
+      }
+    }
+  }
+}
+
+.my-node-enter {
+  transition: opacity 200ms;
+  opacity: 0;
+}
+
+.my-node-enter-active {
+  opacity: 1;
+}
+
